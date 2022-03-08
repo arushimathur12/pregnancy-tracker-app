@@ -9,7 +9,7 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
-
+import { Ionicons } from "@expo/vector-icons";
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
@@ -68,8 +68,18 @@ function BottomTabNavigator() {
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: '',
+          // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: (tabInfo) => {
+            return (
+              <Ionicons
+                name="md-home"
+                size={24}
+                color={tabInfo.focused ? "#006600" : "#8e8e93"}
+                style={{ marginBottom: -15 }}
+              />
+            );
+          },
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -90,24 +100,55 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: '',
+          // tabBarIcon: 
+          // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          // tabBarIcon: none//({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: (tabInfo) => {
+            return (
+              <Ionicons
+                name="analytics"
+                size={24}
+                color={tabInfo.focused ? "#006600" : "#8e8e93"} style={{ marginBottom: -15 }}
+              />
+            );
+          }
         }}
       />
       <BottomTab.Screen
         name="TabThree"
         component={TabThreeScreen}
         options={{
-          title: 'Tab Three',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: '',
+          // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: (tabInfo) => {
+            return (
+              <Ionicons
+                name="chatbox"
+                size={24}
+                color={tabInfo.focused ? "#006600" : "#8e8e93"}
+                style={{ marginBottom: -15 }}
+              />
+            );
+          }
         }}
       />
       <BottomTab.Screen
         name="TabFour"
         component={TabFourScreen}
         options={{
-          title: 'Tab Four',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: '',
+          tabBarIcon: (tabInfo) => {
+            return (
+              <Ionicons
+                name="newspaper-outline"
+                size={24}
+                color={tabInfo.focused ? "#006600" : "#8e8e93"}
+                style={{ marginBottom: -15 }}
+              />
+            );
+          }
+          // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -122,4 +163,5 @@ function TabBarIcon(props: {
   color: string;
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  // return Image()
 }
